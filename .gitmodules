@@ -73,3 +73,9 @@
 [submodule "codeblocks/lv_drivers"]
 	path = codeblocks/lv_drivers
 	url = https://github.com/littlevgl/lv_drivers.git
+[submodule "stm32f769_discovery_no_os/lvgl"]
+	path = stm32f769_discovery_no_os/lvgl
+	url = https://github.com/littlevgl/lvgl.git
+[submodule "stm32f769_discovery_no_os/lv_examples"]
+	path = stm32f769_discovery_no_os/lv_examples
+	url = https://github.com/littlevgl/lv_examples.git
