@@ -12,6 +12,7 @@
 #include "stm32f7xx.h"
 #include "stm32f769i_discovery.h"
 #include "hal_stm_lvgl/tft/tft.h"
+#include "hal_stm_lvgl/touchpad/touchpad.h"
 #include "lvgl/lvgl.h"
 
 static void SystemClock_Config(void);
@@ -41,6 +42,7 @@ int main(void)
 	lv_init();
 
 	tft_init();
+	touchpad_init();
 
 	demo_create();
 

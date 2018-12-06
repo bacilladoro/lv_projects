@@ -133,7 +133,7 @@
 /* More info about fonts: https://littlevgl.com/basics#fonts
  * To enable a built-in font use 1,2,4 or 8 values
  * which will determine the bit-per-pixel */
-#define LV_FONT_DEFAULT        &lv_font_dejavu_40     /*Always set a default font from the built-in fonts*/
+#define LV_FONT_DEFAULT        &lv_font_dejavu_30     /*Always set a default font from the built-in fonts*/
 
 #define USE_LV_FONT_DEJAVU_10              0
 #define USE_LV_FONT_DEJAVU_10_LATIN_SUP    0
@@ -145,17 +145,17 @@
 #define USE_LV_FONT_DEJAVU_20_CYRILLIC     0
 #define USE_LV_FONT_SYMBOL_20              4
 
-#define USE_LV_FONT_DEJAVU_30              0
+#define USE_LV_FONT_DEJAVU_30              4
 #define USE_LV_FONT_DEJAVU_30_LATIN_SUP    0
 #define USE_LV_FONT_DEJAVU_30_CYRILLIC     0
-#define USE_LV_FONT_SYMBOL_30              0
+#define USE_LV_FONT_SYMBOL_30              4
 
-#define USE_LV_FONT_DEJAVU_40              4
+#define USE_LV_FONT_DEJAVU_40              0
 #define USE_LV_FONT_DEJAVU_40_LATIN_SUP    0
 #define USE_LV_FONT_DEJAVU_40_CYRILLIC     0
-#define USE_LV_FONT_SYMBOL_40              4
+#define USE_LV_FONT_SYMBOL_40              0
 
-#define USE_LV_FONT_MONOSPACE_8            1
+#define USE_LV_FONT_MONOSPACE_8            0
 
 /* Optionally declare your custom fonts here.
  * You can use these fonts as default font too
@@ -164,8 +164,6 @@
  *                                LV_FONT_DECLARE(my_font_2) \
  */
 #define LV_FONT_CUSTOM_DECLARE
-
-#define LV_FONT_DEFAULT        &lv_font_dejavu_20     /*Always set a default font from the built-in fonts*/
 
 /*===================
  *  LV_OBJ SETTINGS
