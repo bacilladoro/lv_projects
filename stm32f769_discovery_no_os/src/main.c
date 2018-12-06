@@ -44,18 +44,10 @@ int main(void)
 
 	demo_create();
 
-
-//	lv_label_create(lv_scr_act(), NULL);
-//
-//
-//	lv_obj_t * btn = lv_btn_create(lv_scr_act(), NULL);
-//	lv_obj_align(btn, NULL, LV_ALIGN_CENTER, 0, 0);
-//	lv_obj_t * label = lv_label_create(btn, NULL);
-//	lv_label_set_text(label, "Button");
-
 	while(1) {
 		lv_task_handler();
 		HAL_Delay(5);
+
 	}
 }
 
