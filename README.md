@@ -27,23 +27,26 @@ Check the *lvgl_test* sketch to see the proting and usage
 Driving an 320x240 TFT with ILI9432 controller via SPI using ESP32. The project is craeted in Eclipse using [ESP IDF](https://esp-idf.readthedocs.io/en/latest/). (Getting started guide [here](https://esp-idf.readthedocs.io/en/v1.0/eclipse-setup.html)) To link LittlevGL and lv_examples with ESP-IDF you need to add component.mk files to each directory. Rename `lvgl_component.mk` and `lv_example_component.mk` to `component.mk` and copy to the lvgl and lv_examples directories.  
 
 ### linux_frame_buffer
-Directly use Linux fame buffer (e.g. /dev/fb0) as frame buffer. Demonstrates the usage winth embedded Linux systems. The project is created in Eclipse CDT. Learn more here: [LittlevGL Blog Post](https://littlevgl.com/blog/23/embedded-gui-using-linux-frame-buffer-device-with-littlevgl)
+Directly use Linux fame buffer (e.g. /dev/fb0) as frame buffer. Demonstrates the usage winth embedded Linux systems. The project is created in Eclipse CDT. Learn more here: [LittlevGL Blog Post](https://blog.littlevgl.com/2018-01-03/linux_fb)
 
 ### visual_studio_2017_sdl_x64
 A pre-configured Visual Studio Project using SDL. The SDL library is copied and linked to the project, so you can compile it without any extra steps. The 64 bit libraries are used so it will work out-of-the-box on 64-bit systems.
 
 ### stm32f429_discovery_no_os
 Cheap development board with 240x320 TFT, Resistive touch pad, 180 MHz MCU with 256kB RAM + 64 MBit SDRAM and GPU.
-The CubeMX drivers are used to initilaize the peripheries. In *hal_stm_lvgl/tft/tft.h* you can enable/disable external frame buffer placement and GPU usage.
+The CubeMX drivers are used to initilaize the peripheries. In *hal_stm_lvgl/tft/tft.h* you can enable/disable external frame buffer placement and GPU usage. The project is created with SW4STM32 IDE (Ac6 System Workbranch). Learn more here:  [LittlevGL Blog Post](https://blog.littlevgl.com/2017-07-15/stm32f429_disco_port).
 
 ### stm32f469_discovery_no_os
 STM development board with 800x480 TFT and MIPI DSI interface, capacitive touch screen, 180 MHz MCU with 324kB RAM + 128 MBit SDRAM and GPU.
 The CubeMX drivers are used to initilaize the peripheries. In *hal_stm_lvgl/tft/tft.h* you can enable/disable external frame buffer placement and GPU usage.
+The project is created with SW4STM32 IDE (Ac6 System Workbranch).
 
 ### stm32f746_discovery_no_os
-STM development board with 480x272 TFT, Capacitive touch pad, 216 MHz MCU with 320kB RAM + 64 MBit SDRAM and GPU.
-The CubeMX drivers are used to initilaize the peripheries. Solution uses frame buffer placed in the external SRAM memory. GPU is configurable over USE_LV_GPU define.
-To compile example go to *Release* directory and run `make`.
+STM development board with 480x272 TFT, Capacitive touch pad, 216 MHz MCU with 320kB RAM + 64 MBit SDRAM and GPU. The CubeMX drivers are used to initilaize the peripheries. Solution uses frame buffer placed in the external SRAM memory. GPU is configurable over USE_LV_GPU define. To compile example go to Release directory and run `make`.
+
+### stm32f769_discovery_no_os
+A very powerful STM development board with 800x480 TFT and MIPI DSI interface, capacitive touch screen, 216 MHz MCU with 324kB RAM + 128 MBit SDRAM and GPU. The framebuffer is places into the SDRAM levaing a lot of RAM of the application.
+The project is created with SW4STM32 IDE (Ac6 System Workbranch).
 
 ### pic32mx_r61581_no_os
 A custom PIC32MX695H based board drives a 480x320 display with R61581 display controller via software parallel port.
