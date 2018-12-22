@@ -14,6 +14,7 @@
 #include "hal_stm_lvgl/tft/tft.h"
 #include "hal_stm_lvgl/touchpad/touchpad.h"
 #include "lvgl/lvgl.h"
+#include "lv_examples/lv_tests/lv_test_theme/lv_test_theme_2.h"
 
 static void SystemClock_Config(void);
 static void CPU_CACHE_Enable(void);
@@ -44,7 +45,9 @@ int main(void)
 	tft_init();
 	touchpad_init();
 
-	demo_create();
+//	demo_create();
+//	benchmark_create();
+	lv_test_theme_2();
 
 	while(1) {
 		lv_task_handler();
