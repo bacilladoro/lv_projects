@@ -10,7 +10,7 @@
 
 
 #include "stm32f4xx.h"
-#include "stm32f429i_discovery.h"
+#include "hal_stm_lvgl/stm32f429i_discovery.h"
 
 #include "lvgl/lvgl.h"
 

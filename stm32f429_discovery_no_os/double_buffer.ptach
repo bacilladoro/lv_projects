@@ -1,0 +1,136 @@
+diff --git a/stm32f429_discovery_no_os/STM32F429I-DISCO.xml b/stm32f429_discovery_no_os/STM32F429I-DISCO.xml
+index 7bdcb0b..66cfc5f 100644
+--- a/stm32f429_discovery_no_os/STM32F429I-DISCO.xml
++++ b/stm32f429_discovery_no_os/STM32F429I-DISCO.xml
+@@ -12,8 +12,8 @@
+ <targetDefinitions>
+   <board id="stm32f429i-disco">
+     <name>STM32F429I-DISCO</name>
+-    <dbgIF>SWD</dbgIF>
+     <dbgIF>JTAG</dbgIF>
++    <dbgIF>SWD</dbgIF>
+     <dbgDEV>ST-Link</dbgDEV>
+     <mcuId>stm32f429zitx</mcuId>
+   </board>
+diff --git a/stm32f429_discovery_no_os/hal_stm_lvgl/tft/tft.c b/stm32f429_discovery_no_os/hal_stm_lvgl/tft/tft.c
+index b7774b6..f8814c2 100644
+--- a/stm32f429_discovery_no_os/hal_stm_lvgl/tft/tft.c
++++ b/stm32f429_discovery_no_os/hal_stm_lvgl/tft/tft.c
+@@ -94,6 +94,7 @@ static void Error_Handler(void);
+  **********************/
+ 
+ static LTDC_HandleTypeDef LtdcHandle;
++static LTDC_LayerCfgTypeDef pLayerCfg;
+ 
+ #if TFT_USE_GPU != 0
+ static DMA2D_HandleTypeDef     Dma2dHandle;
+@@ -170,30 +171,14 @@ static void tft_flush(int32_t x1, int32_t y1, int32_t x2, int32_t y2, const lv_c
+ 	if(x1 > TFT_HOR_RES - 1) return;
+ 	if(y1 > TFT_VER_RES - 1) return;
+ 
+-	/*Truncate the area to the screen*/
+-	int32_t act_x1 = x1 < 0 ? 0 : x1;
+-	int32_t act_y1 = y1 < 0 ? 0 : y1;
+-	int32_t act_x2 = x2 > TFT_HOR_RES - 1 ? TFT_HOR_RES - 1 : x2;
+-	int32_t act_y2 = y2 > TFT_VER_RES - 1 ? TFT_VER_RES - 1 : y2;
+-
+-	x1_flush = act_x1;
+-	y1_flush = act_y1;
+-	x2_flush = act_x2;
+-	y2_fill = act_y2;
+-	y_fill_act = act_y1;
+-	buf_to_flush = color_p;
++	  pLayerCfg.FBStartAdress = (uint32_t)color_p;
+ 
++	  /* Configure the Background Layer*/
++	  if(HAL_LTDC_ConfigLayer(&LtdcHandle, &pLayerCfg, 0) != HAL_OK) {
++		  while(1);
++	  }
+ 
+-	  /*##-7- Start the DMA transfer using the interrupt mode #*/
+-	  /* Configure the source, destination and buffer size DMA fields and Start DMA Stream transfer */
+-	  /* Enable All the DMA interrupts */
+-	HAL_StatusTypeDef err;
+-	err = HAL_DMA_Start_IT(&DmaHandle,(uint32_t)buf_to_flush, (uint32_t)&my_fb[y_fill_act * TFT_HOR_RES + x1_flush],
+-			  (x2_flush - x1_flush + 1));
+-	if(err != HAL_OK)
+-	{
+-		while(1);	/*Halt on error*/
+-	}
++	  lv_flush_ready();
+ }
+ 
+ /**
+@@ -334,14 +319,13 @@ static void gpu_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color)
+ 
+ 	Dma2dHandle.LayerCfg[1].InputAlpha = 0xff;
+     HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
+-	HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to24(color), (uint32_t) dest, (uint32_t)dest, length, 1);
++	HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest, (uint32_t)dest, length, 1);
+ }
+ 
+ #endif
+ 
+ static void LCD_Config(void)
+ {
+-  LTDC_LayerCfgTypeDef pLayerCfg;
+ 
+   /* Initialization of ILI9341 component*/
+   ili9341_Init();
+diff --git a/stm32f429_discovery_no_os/lv_conf.h b/stm32f429_discovery_no_os/lv_conf.h
+index 62b63e0..4a1b91e 100644
+--- a/stm32f429_discovery_no_os/lv_conf.h
++++ b/stm32f429_discovery_no_os/lv_conf.h
+@@ -36,13 +36,13 @@
+  * Required for buffered drawing, opacity and anti-aliasing
+  * VDB makes the double buffering, you don't need to deal with it!
+  * Typical size: ~1/10 screen */
+-#define LV_VDB_SIZE         (20 * LV_HOR_RES)  /*Size of VDB in pixel count (1/10 screen size is good for first)*/
+-#define LV_VDB_ADR          0                  /*Place VDB to a specific address (e.g. in external RAM) (0: allocate automatically into RAM)*/
++#define LV_VDB_SIZE         (LV_VER_RES * LV_HOR_RES)  /*Size of VDB in pixel count (1/10 screen size is good for first)*/
++#define LV_VDB_ADR          0xD0000000                  /*Place VDB to a specific address (e.g. in external RAM) (0: allocate automatically into RAM)*/
+ 
+ /* Use two Virtual Display buffers (VDB) parallelize rendering and flushing (optional)
+  * The flushing should use DMA to write the frame buffer in the background*/
+-#define LV_VDB_DOUBLE       0       /*1: Enable the use of 2 VDBs*/
+-#define LV_VDB2_ADR         0       /*Place VDB2 to a specific address (e.g. in external RAM) (0: allocate automatically into RAM)*/
++#define LV_VDB_DOUBLE       1       /*1: Enable the use of 2 VDBs*/
++#define LV_VDB2_ADR         0xD0040000       /*Place VDB2 to a specific address (e.g. in external RAM) (0: allocate automatically into RAM)*/
+ 
+ /* Enable anti-aliasing (lines, and radiuses will be smoothed) */
+ #define LV_ANTIALIAS        1       /*1: Enable anti-aliasing*/
+diff --git a/stm32f429_discovery_no_os/lvgl b/stm32f429_discovery_no_os/lvgl
+index 4773dfd..4c2df29 160000
+--- a/stm32f429_discovery_no_os/lvgl
++++ b/stm32f429_discovery_no_os/lvgl
+@@ -1 +1 @@
+-Subproject commit 4773dfd53f5847885220ec96c085a12aaa719062
++Subproject commit 4c2df29808bdcd4520a51fdb9647aa231d405f2e
+diff --git a/stm32f429_discovery_no_os/src/main.c b/stm32f429_discovery_no_os/src/main.c
+index 1caf0a9..8776d62 100644
+--- a/stm32f429_discovery_no_os/src/main.c
++++ b/stm32f429_discovery_no_os/src/main.c
+@@ -22,6 +22,14 @@
+ 
+ static void SystemClock_Config(void);
+ 
++void rounder(lv_area_t * a)
++{
++	a->x1 = 0;
++	a->y1 = 0;
++	a->x2 = LV_HOR_RES - 1;
++	a->y2 = LV_VER_RES - 1;
++}
++
+ int main(void)
+ {
+ 	HAL_Init();
+@@ -44,6 +52,8 @@ int main(void)
+ 
+ 	demo_create();
+ 
++	lv_refr_set_round_cb(rounder);
++
+ //	benchmark_create();
+ 
+ 	while (1)

@@ -13,8 +13,7 @@
 
 #include "tft.h"
 #include "stm32f4xx.h"
-#include "stm32f429i_discovery.h"
-#include "../Components/ili9341/ili9341.h"
+#include "ili9341.h"
 
 /*********************
  *      DEFINES
@@ -334,7 +333,7 @@ static void gpu_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color)
 
 	Dma2dHandle.LayerCfg[1].InputAlpha = 0xff;
     HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
-	HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to24(color), (uint32_t) dest, (uint32_t)dest, length, 1);
+	HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest, (uint32_t)dest, length, 1);
 }
 
 #endif
@@ -926,12 +925,7 @@ static void DMA_Config(void)
   /*##-4- Initialize the DMA stream ##########################################*/
   if(HAL_DMA_Init(&DmaHandle) != HAL_OK)
   {
-    /* Turn LED3/LED4 on: in case of Initialization Error */
-    BSP_LED_On(LED3);
-    BSP_LED_On(LED4);
-    while(1)
-    {
-    }
+    while(1);
   }
 
   /*##-5- Select Callbacks functions called after Transfer complete and Transfer error */
