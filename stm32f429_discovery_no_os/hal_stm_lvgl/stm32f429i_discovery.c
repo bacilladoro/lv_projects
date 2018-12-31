@@ -637,12 +637,12 @@ static void SPIx_Init(void)
   {
     /* SPI configuration -----------------------------------------------------*/
     SpiHandle.Instance = DISCOVERY_SPIx;
-    /* SPI baudrate is set to 5.6 MHz (PCLK2/SPI_BaudRatePrescaler = 90/16 = 5.625 MHz) 
+    /* SPI baudrate is set to 5.6 MHz (PCLK2/SPI_BaudRatePrescaler = 90/16 = 5.625 MHz)
        to verify these constraints:
        - ILI9341 LCD SPI interface max baudrate is 10MHz for write and 6.66MHz for read
        - l3gd20 SPI interface max baudrate is 10MHz for write/read
-       - PCLK2 frequency is set to 90 MHz 
-    */  
+       - PCLK2 frequency is set to 90 MHz
+    */
     SpiHandle.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
 
     /* On STM32F429I-Discovery, LCD ID cannot be read then keep a common configuration */
@@ -658,10 +658,10 @@ static void SPIx_Init(void)
     SpiHandle.Init.NSS            = SPI_NSS_SOFT;
     SpiHandle.Init.TIMode         = SPI_TIMODE_DISABLED;
     SpiHandle.Init.Mode           = SPI_MODE_MASTER;
-  
+
     SPIx_MspInit(&SpiHandle);
     HAL_SPI_Init(&SpiHandle);
-  } 
+  }
 }
 
 /**
@@ -673,16 +673,16 @@ static uint32_t SPIx_Read(uint8_t ReadSize)
 {
   HAL_StatusTypeDef status = HAL_OK;
   uint32_t readvalue;
-  
+
   status = HAL_SPI_Receive(&SpiHandle, (uint8_t*) &readvalue, ReadSize, SpixTimeout);
-  
+
   /* Check the communication status */
   if(status != HAL_OK)
   {
     /* Re-Initialize the BUS */
     SPIx_Error();
   }
-  
+
   return readvalue;
 }
 
@@ -693,9 +693,9 @@ static uint32_t SPIx_Read(uint8_t ReadSize)
 static void SPIx_Write(uint16_t Value)
 {
   HAL_StatusTypeDef status = HAL_OK;
-  
+
   status = HAL_SPI_Transmit(&SpiHandle, (uint8_t*) &Value, 1, SpixTimeout);
-  
+
   /* Check the communication status */
   if(status != HAL_OK)
   {
@@ -705,7 +705,7 @@ static void SPIx_Write(uint16_t Value)
 }
 
 /**
-  * @brief  Sends a Byte through the SPI interface and return the Byte received 
+  * @brief  Sends a Byte through the SPI interface and return the Byte received
   *         from the SPI bus.
   * @param  Byte: Byte send.
   * @retval The received byte value
@@ -713,14 +713,14 @@ static void SPIx_Write(uint16_t Value)
 static uint8_t SPIx_WriteRead(uint8_t Byte)
 {
   uint8_t receivedbyte = 0;
-  
+
   /* Send a Byte through the SPI peripheral */
   /* Read byte from the SPI bus */
   if(HAL_SPI_TransmitReceive(&SpiHandle, (uint8_t*) &Byte, (uint8_t*) &receivedbyte, 1, SpixTimeout) != HAL_OK)
   {
     SPIx_Error();
   }
-  
+
   return receivedbyte;
 }
 
@@ -731,7 +731,7 @@ static void SPIx_Error(void)
 {
   /* De-initialize the SPI communication BUS */
   HAL_SPI_DeInit(&SpiHandle);
-  
+
   /* Re- Initialize the SPI communication BUS */
   SPIx_Init();
 }
@@ -750,13 +750,13 @@ static void SPIx_MspInit(SPI_HandleTypeDef *hspi)
   /* Enable DISCOVERY_SPI GPIO clock */
   DISCOVERY_SPIx_GPIO_CLK_ENABLE();
 
-  /* configure SPI SCK, MOSI and MISO */    
+  /* configure SPI SCK, MOSI and MISO */
   GPIO_InitStructure.Pin    = (DISCOVERY_SPIx_SCK_PIN | DISCOVERY_SPIx_MOSI_PIN | DISCOVERY_SPIx_MISO_PIN);
   GPIO_InitStructure.Mode   = GPIO_MODE_AF_PP;
   GPIO_InitStructure.Pull   = GPIO_PULLDOWN;
   GPIO_InitStructure.Speed  = GPIO_SPEED_MEDIUM;
   GPIO_InitStructure.Alternate = DISCOVERY_SPIx_AF;
-  HAL_GPIO_Init(DISCOVERY_SPIx_GPIO_PORT, &GPIO_InitStructure);      
+  HAL_GPIO_Init(DISCOVERY_SPIx_GPIO_PORT, &GPIO_InitStructure);
 }
 
 /********************************* LINK LCD ***********************************/

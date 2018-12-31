@@ -34,7 +34,7 @@
   * OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
   *
   ******************************************************************************
-  */ 
+  */
 
 /* Define to prevent recursive inclusion -------------------------------------*/
 #ifndef __STM32F429I_DISCOVERY_IO_H
@@ -45,9 +45,9 @@
 #endif
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f429i_discovery.h"
+#include "../stm32f429i_discovery.h"
 /* Include IO component driver */
-#include "touchpad/stmpe811.h"
+#include "stmpe811.h"
 
 /** @addtogroup BSP
   * @{
@@ -64,7 +64,7 @@
 /** @defgroup STM32F429I_DISCOVERY_IO_Exported_Types STM32F429I DISCOVERY IO Exported Types
   * @{
   */
-typedef enum 
+typedef enum
 {
   IO_OK       = 0,
   IO_ERROR    = 1,
@@ -72,7 +72,7 @@ typedef enum
 }IO_StatusTypeDef;
 /**
   * @}
-  */  
+  */
 
 /** @defgroup STM32F429I_DISCOVERY_IO_Exported_Constants STM32F429I DISCOVERY IO Exported Constants
   * @{
@@ -88,14 +88,14 @@ typedef enum
 #define IO_PIN_ALL                   0xFF
 /**
   * @}
-  */  
+  */
 
 /** @defgroup STM32F429I_DISCOVERY_IO_Exported_Macros STM32F429I DISCOVERY IO Exported Macros
   * @{
   */
 /**
   * @}
-  */  
+  */
 
 /** @defgroup STM32F429I_DISCOVERY_IO_Exported_Functions STM32F429I DISCOVERY IO Exported Functions
   * @{
@@ -107,10 +107,6 @@ void     BSP_IO_ConfigPin(uint16_t IoPin, IO_ModeTypedef IoMode);
 void     BSP_IO_WritePin(uint16_t IoPin, uint8_t PinState);
 uint16_t BSP_IO_ReadPin(uint16_t IoPin);
 void     BSP_IO_TogglePin(uint16_t IoPin);
-  
-/**
-  * @}
-  */ 
 
 /**
   * @}
@@ -118,7 +114,11 @@ void     BSP_IO_TogglePin(uint16_t IoPin);
 
 /**
   * @}
-  */ 
+  */
+
+/**
+  * @}
+  */
 
 /**
   * @}

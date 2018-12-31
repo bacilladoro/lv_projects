@@ -199,7 +199,7 @@ typedef enum
    on accurate values, they just guarantee that the application will not remain
    stuck if the SPI communication is corrupted.
    You may modify these timeout values depending on CPU frequency and application
-   conditions (interrupts routines ...). */   
+   conditions (interrupts routines ...). */
 #define SPIx_TIMEOUT_MAX              ((uint32_t)0x1000)
 
 

@@ -46,7 +46,7 @@
    
 /* Includes ------------------------------------------------------------------*/
 #include "ts.h"
-#include "../io.h"
+#include "io.h"
 
 /** @addtogroup BSP
   * @{
