@@ -1,0 +1,13 @@
+{
+	"name": "littlevgl",
+	"keywords": "gui, graphic, graphics library, tft, lcd, display",
+	"description": "Graphics library to create embedded GUI with easy-to-use graphical elements, beautiful visual effects and low memory footprint. Anti-aliasing, opacity, animations using only one frame buffer.",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/littlevgl/lvgl"
+	},
+	"homepage": "https://littlevgl.com/",
+	"version": "5.2",
+	"frameworks": "*",
+	"platforms": "*"
+}
