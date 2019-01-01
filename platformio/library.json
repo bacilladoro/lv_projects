@@ -8,6 +8,7 @@
 	},
 	"homepage": "https://littlevgl.com/",
 	"version": "5.2",
+	"examples":"https://github.com/littlevgl/lv_projects/blob/master/platformio/examples/*.c",
 	"frameworks": "*",
 	"platforms": "*"
 }
