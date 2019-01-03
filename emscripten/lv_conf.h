@@ -46,6 +46,7 @@
 
 /*Screen refresh period in milliseconds*/
 #define LV_REFR_PERIOD      30
+#define LV_INV_FIFO_SIZE    32    /*The average count of objects on a screen */
 
 /*-----------------
  *  VDB settings
@@ -372,8 +373,6 @@
 
 /*--END OF LV_CONF_H--*/
 
-/*Be sure every define has a default value*/
-#include "lv_conf_checker.h"
 
 #endif /*LV_CONF_H*/
 

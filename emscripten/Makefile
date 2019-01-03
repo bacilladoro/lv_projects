@@ -2,10 +2,6 @@ CC = emcc
 
 TARGET := lvgl.html
 
-#CSRCS := lvgl.c
-
-#COBJS := $(patsubst .c,.o,$(CSRCS))
-
 SRCS += lvgl/lv_draw/lv_draw_line.c lvgl/lv_draw/lv_draw_rbasic.c
 SRCS += lvgl/lv_draw/lv_draw_img.c lvgl/lv_draw/lv_draw_arc.c
 SRCS += lvgl/lv_draw/lv_draw_rect.c lvgl/lv_draw/lv_draw_triangle.c
@@ -54,14 +50,28 @@ SRCS += lv_drivers/display/monitor.c lv_drivers/indev/mouse.c lv_drivers/indev/e
 
 SRCS += main.c mouse_cursor_icon.c
 
+# If V=1 you will see full compiler arguments
+ifeq ($(V),)
+Q := @
+else
+Q :=
+endif
+
 CSRCS := $(SRCS)
+
+COBJS := $(CSRCS:.c=.o)
 
 CFLAGS += -DLV_CONF_INCLUDE_SIMPLE=1 -I. -Ilvgl
 
+%.o: %.c
+	@echo " CC " $<
+	$(Q)$(CC) -c $(CFLAGS) -O2 -s USE_SDL=2 -o $@ $<
+
 all: $(TARGET)
 
-$(TARGET):
-	$(CC) $(CFLAGS) -O2 -s USE_SDL=2 -o lvgl.html $(CSRCS)
+$(TARGET): $(COBJS)
+	@echo " LINK " $@
+	$(Q)$(CC) $(CFLAGS) -O2 -s USE_SDL=2 -o lvgl.html $(COBJS)
 
 clean:
-	@/bin/true
+	@rm -f lvgl.html lvgl.js lvgl.wasm $(COBJS)
