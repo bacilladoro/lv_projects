@@ -302,7 +302,11 @@ static void gpu_mem_fill(lv_color_t * dest, uint32_t length, lv_color_t color)
 
     Dma2dHandle.LayerCfg[1].InputAlpha = 0xff;
     HAL_DMA2D_ConfigLayer(&Dma2dHandle, 1);
+#if LVGL_VERSION_MAJOR == 5 && LVGL_VERSION_MINOR <= 1
     HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to24(color), (uint32_t) dest, (uint32_t)dest, length, 1);
+#else
+    HAL_DMA2D_BlendingStart(&Dma2dHandle, (uint32_t) lv_color_to32(color), (uint32_t) dest, (uint32_t)dest, length, 1);
+#endif
 }
 
 #endif
