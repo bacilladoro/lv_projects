@@ -42,7 +42,7 @@ The CubeMX drivers are used to initilaize the peripheries. In *hal_stm_lvgl/tft/
 The project is created with SW4STM32 IDE (Ac6 System Workbranch).
 
 ### stm32f746_discovery_no_os
-STM development board with 480x272 TFT, Capacitive touch pad, 216 MHz MCU with 320kB RAM + 64 MBit SDRAM and GPU. The CubeMX drivers are used to initilaize the peripheries. Solution uses frame buffer placed in the external SRAM memory. GPU is configurable over USE_LV_GPU define. To compile example go to Release directory and run `make`.
+STM development board with 480x272 TFT, Capacitive touch pad, 216 MHz MCU with 320kB RAM + 64 MBit SDRAM and GPU. The CubeMX drivers are used to initilaize the peripheries. Solution uses frame buffer placed in the external SDRAM memory. GPU is configurable over USE_LV_GPU define. 16-bit color (RGB565) is used. To compile example go to Release directory and run `make`.
 
 ### stm32f769_discovery_no_os
 A very powerful STM development board with 800x480 TFT and MIPI DSI interface, capacitive touch screen, 216 MHz MCU with 512kB RAM + 128 MBit SDRAM and GPU. The framebuffer is places into the SDRAM levaing a lot of RAM of the application.
