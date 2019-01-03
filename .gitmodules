@@ -79,3 +79,12 @@
 [submodule "stm32f769_discovery_no_os/lv_examples"]
 	path = stm32f769_discovery_no_os/lv_examples
 	url = https://github.com/littlevgl/lv_examples.git
+[submodule "emscripten/lvgl"]
+	path = emscripten/lvgl
+	url = https://github.com/littlevgl/lvgl.git
+[submodule "emscripten/lv_examples"]
+	path = emscripten/lv_examples
+	url = https://github.com/littlevgl/lv_examples.git
+[submodule "emscripten/lv_drivers"]
+	path = emscripten/lv_drivers
+	url = https://github.com/littlevgl/lv_drivers.git
