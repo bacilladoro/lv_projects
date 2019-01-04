@@ -156,9 +156,6 @@
     <ClCompile Include="lv_examples\lv_tests\lv_test_stress\lv_test_stress.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lv_examples\lv_tests\lv_test_theme\lv_test_theme.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lv_examples\lv_tutorial\0_porting\lv_tutorial_porting.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -246,54 +243,6 @@
     <ClCompile Include="lvgl\lv_hal\lv_hal_tick.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_dejavu_10.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_dejavu_10_cyrillic.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_dejavu_10_latin_sup.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_dejavu_20.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_dejavu_20_cyrillic.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_dejavu_20_latin_sup.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_dejavu_30.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_dejavu_30_cyrillic.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_dejavu_30_latin_sup.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_dejavu_40.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_dejavu_40_cyrillic.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_dejavu_40_latin_sup.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_symbol_10.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_symbol_20.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_symbol_30.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_fonts\lv_font_symbol_40.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="lvgl\lv_misc\lv_anim.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -325,9 +274,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lvgl\lv_misc\lv_templ.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="lvgl\lv_misc\lv_trigo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lvgl\lv_misc\lv_txt.c">
@@ -430,6 +376,102 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="lvgl\lv_themes\lv_theme_zen.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_draw\lv_draw_arc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_draw\lv_draw_img.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_draw\lv_draw_label.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_draw\lv_draw_line.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_draw\lv_draw_rect.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_draw\lv_draw_triangle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_misc\lv_log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_objx\lv_arc.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_objx\lv_calendar.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_objx\lv_imgbtn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_objx\lv_preload.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_themes\lv_theme_nemo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lv_drivers\indev\mousewheel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_builtin.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_dejavu_10.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_dejavu_10_cyrillic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_dejavu_10_latin_sup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_dejavu_20.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_dejavu_20_cyrillic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_dejavu_20_latin_sup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_dejavu_30.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_dejavu_30_cyrillic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_dejavu_30_latin_sup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_dejavu_40.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_dejavu_40_cyrillic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_dejavu_40_latin_sup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_monospace_8.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_symbol_10.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_symbol_20.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_symbol_30.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lvgl\lv_fonts\lv_font_symbol_40.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lv_examples\lv_tests\lv_test_theme\lv_test_theme_1.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -566,9 +608,6 @@
     <ClInclude Include="lv_examples\lv_tests\lv_test_stress\lv_test_stress.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="lv_examples\lv_tests\lv_test_theme\lv_test_theme.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lv_examples\lv_tests\lv_test.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -650,9 +689,6 @@
     <ClInclude Include="lvgl\lv_hal\lv_hal_tick.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="lvgl\lv_misc\lv_fonts\lv_symbol_def.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="lvgl\lv_misc\lv_anim.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -684,9 +720,6 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lvgl\lv_misc\lv_templ.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="lvgl\lv_misc\lv_trigo.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="lvgl\lv_misc\lv_txt.h">
@@ -806,6 +839,54 @@
     <ClInclude Include="lv_ex_conf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="lvgl\lv_draw\lv_draw_arc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_draw\lv_draw_img.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_draw\lv_draw_label.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_draw\lv_draw_line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_draw\lv_draw_rect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_draw\lv_draw_triangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_misc\lv_log.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_misc\lv_symbol_def.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_objx\lv_arc.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_objx\lv_calendar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_objx\lv_imgbtn.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_objx\lv_preload.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_themes\lv_theme_nemo.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lv_drivers\indev\mousewheel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lvgl\lv_fonts\lv_font_builtin.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lv_examples\lv_tests\lv_test_theme\lv_test_theme_1.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="lv_examples\lv_tutorial\6_images\blue_flower_8.bin">
@@ -814,9 +895,10 @@
     <None Include="lv_examples\lv_tutorial\6_images\blue_flower_16.bin">
       <Filter>Resource Files</Filter>
     </None>
-    <None Include="lv_examples\lv_tutorial\6_images\blue_flower_24.bin">
+    <None Include="lv_examples\lv_tutorial\6_images\blue_flower_32.bin">
       <Filter>Resource Files</Filter>
     </None>
     <None Include="SDL2.dll" />
+    <None Include="lvgl\lv_fonts\lv_fonts.mk" />
   </ItemGroup>
 </Project>
