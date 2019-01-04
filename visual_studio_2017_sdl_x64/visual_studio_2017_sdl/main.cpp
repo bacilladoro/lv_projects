@@ -15,7 +15,7 @@
 #include "lv_drivers/indev/keyboard.h"
 #include "lv_examples/lv_apps/demo/demo.h"
 #include "lv_examples/lv_apps/benchmark/benchmark.h"
-#include "lv_examples/lv_tests/lv_test_theme/lv_test_theme.h"
+#include "lv_examples/lv_tests/lv_test_theme/lv_test_theme_1.h"
 #include "lv_examples/lv_tutorial/10_keyboard/lv_tutorial_keyboard.h"
 
 /*********************
@@ -57,14 +57,13 @@ int main(int argc, char** argv)
 	demo_create();
 
 	/*Try the benchmark to see how fast is your GUI*/
-	//    benchmark_create();
+	//benchmark_create();
 
 	/*Check the themes too*/
-	//    lv_test_theme_1(lv_theme_night_init(210, NULL));
-
+	//lv_test_theme_1(lv_theme_night_init(210, NULL));
 
 	/*A keyboard control example*/
-	//    lv_tutorial_keyboard(kb_indev);
+	//lv_tutorial_keyboard(kb_indev);
 
 	while (1) {
 		/* Periodically call the lv_task handler.
