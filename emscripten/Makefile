@@ -61,7 +61,7 @@ CSRCS := $(SRCS)
 
 COBJS := $(CSRCS:.c=.o)
 
-CFLAGS += -DLV_CONF_INCLUDE_SIMPLE=1 -I. -Ilvgl
+CFLAGS += -DLV_CONF_INCLUDE_SIMPLE=1 -I. -Ilvgl -s ABORTING_MALLOC=0 -s ASSERTIONS=1 -g4
 
 %.o: %.c
 	@echo " CC " $<
