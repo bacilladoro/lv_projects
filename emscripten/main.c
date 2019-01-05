@@ -21,6 +21,7 @@
 #include "lv_examples/lv_apps/benchmark/benchmark.h"
 #include "lv_examples/lv_tests/lv_test_theme/lv_test_theme_1.h"
 #include "lv_examples/lv_tests/lv_test_group/lv_test_group.h"
+#include "lv_examples/lv_tests/lv_test_stress/lv_test_stress.h"
 
 /*********************
  *      DEFINES
@@ -80,33 +81,37 @@ test_cpicker();
     lv_test_theme_1(lv_theme_night_init(210, NULL));
 #else
     /* A keyboard and encoder (mouse wheel) control example*/
-    lv_test_group_1();
+   // lv_test_group_1();
 #endif
+   
+   // lv_test_stress_1();
+    
     emscripten_set_main_loop_arg(do_loop, NULL, -1, true);
 }
+
 void do_loop(void *arg)
 {
-        /* Periodically call the lv_task handler.
-         * It could be done in a timer interrupt or an OS task too.*/
+    /* Periodically call the lv_task handler.
+     * It could be done in a timer interrupt or an OS task too.*/
 	extern void monitor_sdl_refr_core(void);
 	monitor_sdl_refr_core();
-        lv_task_handler();
+    lv_task_handler();
 
-            SDL_Event event;
-            
-            while(SDL_PollEvent(&event)) {
-                #if USE_MOUSE != 0
-                    mouse_handler(&event);
-                #endif
+    SDL_Event event;
+    
+    while(SDL_PollEvent(&event)) {
+        #if USE_MOUSE != 0
+            mouse_handler(&event);
+        #endif
 
-                #if USE_KEYBOARD
-                    keyboard_handler(&event);
-                #endif
+        #if USE_KEYBOARD
+            keyboard_handler(&event);
+        #endif
 
-                #if USE_ENCODER != 0
-                    encoder_handler(&event);
-                #endif
-            }
+        #if USE_ENCODER != 0
+            encoder_handler(&event);
+        #endif
+    }
 
 }
 
