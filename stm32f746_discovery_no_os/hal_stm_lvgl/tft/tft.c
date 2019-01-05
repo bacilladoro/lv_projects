@@ -22,6 +22,11 @@
 /*********************
  *      DEFINES
  *********************/
+
+#if LV_COLOR_DEPTH != 16 && LV_COLOR_DEPTH != 24 && LV_COLOR_DEPTH != 32
+#error LV_COLOR_DEPTH must be 16, 24, or 32
+#endif
+
 /**
   * @brief  LCD status structure definition
   */
@@ -86,10 +91,17 @@ static DMA2D_HandleTypeDef Dma2dHandle;
 #endif
 static LTDC_HandleTypeDef  hLtdcHandler;
 
+#if LV_COLOR_DEPTH == 16
+typedef uint16_t uintpixel_t;
+#elif LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
+typedef uint32_t uintpixel_t;
+#endif
+
 /* You can try to change buffer to internal ram by uncommenting line below and commenting
  * SDRAM one. */
-//static uint16_t my_fb[TFT_HOR_RES * TFT_VER_RES];
-static __IO uint16_t * my_fb = (__IO uint16_t*) (SDRAM_DEVICE_ADDR);
+//static uintpixel_t my_fb[TFT_HOR_RES * TFT_VER_RES];
+
+static __IO uintpixel_t * my_fb = (__IO uintpixel_t*) (SDRAM_DEVICE_ADDR);
 
 static DMA_HandleTypeDef  DmaHandle;
 static int32_t            x1_flush;
@@ -169,8 +181,12 @@ static void ex_disp_flush(int32_t x1, int32_t y1, int32_t x2, int32_t y2, const 
     /* Configure the source, destination and buffer size DMA fields and Start DMA Stream transfer */
     /* Enable All the DMA interrupts */
     HAL_StatusTypeDef err;
+    uint32_t length = (x2_flush - x1_flush + 1);
+#if LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
+    length *= 2; /* STM32 DMA uses 16-bit chunks so multiply by 2 for 32-bit color */
+#endif
     err = HAL_DMA_Start_IT(&DmaHandle,(uint32_t)buf_to_flush, (uint32_t)&my_fb[y_fill_act * TFT_HOR_RES + x1_flush],
-            (x2_flush - x1_flush + 1));
+             length);
     if(err != HAL_OK)
     {
         while(1);	/*Halt on error*/
@@ -472,7 +488,14 @@ static void LCD_LayerRgb565Init(uint32_t FB_Address)
     layer_cfg.WindowX1 = TFT_HOR_RES;
     layer_cfg.WindowY0 = 0;
     layer_cfg.WindowY1 = TFT_VER_RES;
+
+#if LV_COLOR_DEPTH == 16
     layer_cfg.PixelFormat = LTDC_PIXEL_FORMAT_RGB565;
+#elif LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
+    layer_cfg.PixelFormat = LTDC_PIXEL_FORMAT_ARGB8888;
+#else
+#error Unsupported color depth (see tft.c)
+#endif
     layer_cfg.FBStartAdress = FB_Address;
     layer_cfg.Alpha = 255;
     layer_cfg.Alpha0 = 0;
@@ -547,12 +570,16 @@ static void DMA_TransferComplete(DMA_HandleTypeDef *han)
     if(y_fill_act > y2_fill) {
         lv_flush_ready();
     } else {
+    	uint32_t length = (x2_flush - x1_flush + 1);
         buf_to_flush += x2_flush - x1_flush + 1;
         /*##-7- Start the DMA transfer using the interrupt mode ####################*/
         /* Configure the source, destination and buffer size DMA fields and Start DMA Stream transfer */
         /* Enable All the DMA interrupts */
+#if LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
+        length *= 2; /* STM32 DMA uses 16-bit chunks so multiply by 2 for 32-bit color */
+#endif
         if(HAL_DMA_Start_IT(han,(uint32_t)buf_to_flush, (uint32_t)&my_fb[y_fill_act * TFT_HOR_RES + x1_flush],
-                            (x2_flush - x1_flush + 1)) != HAL_OK)
+                            length) != HAL_OK)
         {
             while(1);	/*Halt on error*/
         }
@@ -632,7 +659,11 @@ static void DMA2D_Config(void)
 {
     /* Configure the DMA2D Mode, Color Mode and output offset */
     Dma2dHandle.Init.Mode         = DMA2D_M2M_BLEND;
+#if LV_COLOR_DEPTH == 16
     Dma2dHandle.Init.ColorMode    = DMA2D_RGB565;
+#elif LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
+    Dma2dHandle.Init.ColorMode    = DMA2D_ARGB8888;
+#endif
     Dma2dHandle.Init.OutputOffset = 0x0;
 
     /* DMA2D Callbacks Configuration */
@@ -642,13 +673,22 @@ static void DMA2D_Config(void)
     /* Foreground Configuration */
     Dma2dHandle.LayerCfg[1].AlphaMode = DMA2D_REPLACE_ALPHA;
     Dma2dHandle.LayerCfg[1].InputAlpha = 0xFF;
+#if LV_COLOR_DEPTH == 16
     Dma2dHandle.LayerCfg[1].InputColorMode = DMA2D_INPUT_RGB565;
+#elif LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
+    Dma2dHandle.LayerCfg[1].InputColorMode = DMA2D_INPUT_ARGB8888;
+#endif
+
     Dma2dHandle.LayerCfg[1].InputOffset = 0x0;
 
     /* Background Configuration */
     Dma2dHandle.LayerCfg[0].AlphaMode = DMA2D_REPLACE_ALPHA;
     Dma2dHandle.LayerCfg[0].InputAlpha = 0xFF;
+#if LV_COLOR_DEPTH == 16
     Dma2dHandle.LayerCfg[0].InputColorMode = DMA2D_INPUT_RGB565;
+#elif LV_COLOR_DEPTH == 24 || LV_COLOR_DEPTH == 32
+    Dma2dHandle.LayerCfg[0].InputColorMode = DMA2D_INPUT_ARGB8888;
+#endif
     Dma2dHandle.LayerCfg[0].InputOffset = 0x0;
 
     Dma2dHandle.Instance   = DMA2D;
