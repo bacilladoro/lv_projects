@@ -61,9 +61,12 @@ CSRCS := $(SRCS)
 
 COBJS := $(CSRCS:.c=.o)
 
-CFLAGS += -DLV_CONF_INCLUDE_SIMPLE=1 -I. -Ilvgl -s ABORTING_MALLOC=0 -s ASSERTIONS=1 -g4
+# Try this if you experience problems:
+# CFLAGS += -s EMULATE_FUNCTION_POINTER_CASTS=1
 
-%.o: %.c
+CFLAGS += -DLV_CONF_INCLUDE_SIMPLE=1 -I. -Ilvgl
+
+%.o: %.c Makefile
 	@echo " CC " $<
 	$(Q)$(CC) -c $(CFLAGS) -O2 -s USE_SDL=2 -o $@ $<
 
