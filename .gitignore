@@ -30,6 +30,4 @@ RemoteSystemsTempFiles/
 /pic32mx795f512l_ssd1963_ft5406/dist/default/
 /pic32mx795f512l_ssd1963_ft5406/nbproject/private/
 /emscripten/*.o
-/emscripten/lvgl.html
-/emscripten/lvgl.js
-/emscripten/lvgl.wasm
+/emscripten/lvgl.*

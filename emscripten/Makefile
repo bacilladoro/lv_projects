@@ -69,9 +69,9 @@ CFLAGS += -DLV_CONF_INCLUDE_SIMPLE=1 -I. -Ilvgl -s ABORTING_MALLOC=0 -s ASSERTIO
 
 all: $(TARGET)
 
-$(TARGET): $(COBJS)
+$(TARGET): $(COBJS) lvgl_shell.html
 	@echo " LINK " $@
-	$(Q)$(CC) $(CFLAGS) -O2 -s USE_SDL=2 -o lvgl.html $(COBJS)
+	$(Q)$(CC) $(CFLAGS) -O2 -s USE_SDL=2 -o lvgl.html --shell-file lvgl_shell.html $(COBJS)
 
 clean:
 	@rm -f lvgl.html lvgl.js lvgl.wasm $(COBJS)
