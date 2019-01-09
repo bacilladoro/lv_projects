@@ -16,7 +16,7 @@ Contributing is very welcome! Please, share with others if you used LittlevGL wi
 3. Initalize the submodules: `git submodule update --init .`
 4. Open the project or copy/paste it where you want (e.g. IDE workspace)
 
-## Porojects
+## Projects
 
 ### arduino_library
 LittlevGL as an Arduino library. 
